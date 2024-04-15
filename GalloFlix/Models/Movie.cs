@@ -46,4 +46,5 @@ public class Movie
     }}
 
     
+    public ICollection<MovieGenre> Genres { get; set; }
 }
