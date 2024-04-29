@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 string conn = builder.Configuration.GetConnectionString("GalloFlix");
 var version = ServerVersion.AutoDetect(conn);
 builder.Services.AddDbContext<AppDbContext>(
-    opt => opt.UseMySql(conn,version)
+    opt => opt.UseMySql(conn, version)
 );
 
 var app = builder.Build();
