@@ -14,7 +14,6 @@ namespace GalloFlix.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _host;
-
         public MoviesController(AppDbContext context, IWebHostEnvironment host)
         {
             _context = context;
@@ -62,7 +61,7 @@ namespace GalloFlix.Controllers
             {
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
-                
+
                 if (arquivo != null)
                 {
                     string nomeArquivo = movie.Id + Path.GetExtension(arquivo.FileName);
@@ -75,7 +74,6 @@ namespace GalloFlix.Controllers
                     movie.Image = "\\img\\movies\\" + nomeArquivo;
                     await _context.SaveChangesAsync();
                 }
-
                 return RedirectToAction(nameof(Index));
             }
             return View(movie);
@@ -88,6 +86,7 @@ namespace GalloFlix.Controllers
             {
                 return NotFound();
             }
+
             var movie = await _context.Movies.FindAsync(id);
             if (movie == null)
             {
@@ -113,16 +112,16 @@ namespace GalloFlix.Controllers
                 try
                 {
                     if (arquivo != null)
-                {
-                    string nomeArquivo = movie.Id + Path.GetExtension(arquivo.FileName);
-                    string caminho = Path.Combine(_host.WebRootPath, "img\\movies");
-                    string novoArquivo = Path.Combine(caminho, nomeArquivo);
-                    using (var stream = new FileStream(novoArquivo, FileMode.Create))
                     {
-                        arquivo.CopyTo(stream);
+                        string nomeArquivo = movie.Id + Path.GetExtension(arquivo.FileName);
+                        string caminho = Path.Combine(_host.WebRootPath, "img\\movies");
+                        string novoArquivo = Path.Combine(caminho, nomeArquivo);
+                        using (var stream = new FileStream(novoArquivo, FileMode.Create))
+                        {
+                            arquivo.CopyTo(stream);
+                        }
+                        movie.Image = "\\img\\movies\\" + nomeArquivo;                       
                     }
-                    movie.Image = "\\img\\movies\\" + nomeArquivo;
-                }
                     _context.Update(movie);
                     await _context.SaveChangesAsync();
                 }

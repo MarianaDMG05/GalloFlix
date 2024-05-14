@@ -1,15 +1,21 @@
-dotnet new mvc -o GalloFlix
+*/ comando para criar o projeto (apenas uma vez)*/
+dotnet new mvc -o  GalloFlix
 
+/* comando para criar solução (apenas uma vez)*/
 dotnet new sln --name GalloFlix
 
+/*comando para incluir */
 dotnet sln add GalloFlix\GalloFlix.csproj
 
-Abrir o NugetGallery (Shift + Ctrl + P):
-    - Pesquisar e Instalar:
+/*como abrir o NugetGalerry: (shift + ctrl + p)
+    Pesquisar e instalar: 
         EntityFrameworkCore
         EntityFrameworkCore.Design
         EntityFrameworkCore.Tools
         Pomelo.EntityFrameworkCore.MySql
+
+
+        AspNetCore.Identity /*instalar */
 
 Criar as classes de dados - Pasta Models
 
@@ -19,21 +25,20 @@ Criar a ConnectionString no arquivo appsettings.json
 
 Criar o serviço de conexão no arquivo Program.cs
 
-dotnet tool install -g dotnet-aspnet-codegenerator --version 8.0.1
-
 Pacotes para CRUD
     Microsoft.VisualStudio.Web.CodeGeneration.Design
     Microsoft.EntityFrameworkCore.SqlServer
 
-Criar um controller CRUD - CREATE READ UPDATE DELETE
-dotnet-aspnet-codegenerator controller -name GenresController -m Genre -dc AppDbContext -outDir Controllers -udl 
+Criar um controller CRUD - (CREATE READ UPDATE DELETE)
+dotnet-aspnet-codegenerator controller -name GenresController -m Genre -dc AppDbContext -outDir Controllers -udl
 
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc AppDbContext -outDir Controllers -udl 
+dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc AppDbContext -outDir Controllers -udl
 
+Configuração do Git local:
 
+git config --global user.name MarianaDMG05
+git config --global user.email mariana.gomes87@etec.sp.gov.br
 
+dotnet ef migrations add AdcionandoUsuario
 
-
-
-
-dotnet tool install --global dotnet-ef --version 8.0.4
+dotnet ef database update

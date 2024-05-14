@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GalloFlix.Models;
-
 [Table("Genre")]
 public class Genre
 {
@@ -12,8 +11,9 @@ public class Genre
 
     [Display(Name = "Nome")]
     [Required(ErrorMessage = "Por favor, informe o Nome")]
-    [StringLength(30, ErrorMessage = "O Nome deve possuir no máximo 30 caracteres")]
-    public string Name { get; set; }
+    [StringLength(30, ErrorMessage = "O nome deve possuir no máximo 30 caracteres")]
 
-    public ICollection<MovieGenre> Movies { get; set; }
+    public string Name { get; set; } 
+
+    public ICollection<MovieGenre> Movies { get; set; }      
 }

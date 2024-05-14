@@ -26,6 +26,7 @@ public class HomeController : Controller
         return View(movies);
     }
 
+
     public IActionResult Privacy()
     {
         return View();
